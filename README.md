@@ -28,7 +28,7 @@ Before you begin, make sure you have the following installed:
     OPENAI_API_KEY=your_api_key_here
     ```
 
-    This is crucial for the text processing functionalities. Replace `your_api_key_here` with your actual OpenAI API key.
+    This is crucial for the text processing functionalities. Replace `your_api_key_here` with your actual OpenAI API key. If you don't have one, go to/setup your OpenAI account and get one [here](https://platform.openai.com/api-keys).
 
 ## How to Use
 
