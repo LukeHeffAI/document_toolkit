@@ -61,5 +61,3 @@ Before you begin, make sure you have the following installed:
 ## Troubleshooting & Support
 
 If you encounter any problems or need help, please open an issue in this repository or reach out to me directly.
-
-Enjoy enhancing your workflow!
