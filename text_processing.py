@@ -4,6 +4,7 @@ from dotenv import load_dotenv
 
 # Get the API key from the .env file using the dotenv api_key = package
 load_dotenv()
+
 openai.api_key = os.getenv("OPENAI_API_KEY")
 
 # Base class for handling different types of OpenAI text operations
