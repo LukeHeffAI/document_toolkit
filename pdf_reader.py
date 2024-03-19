@@ -56,8 +56,3 @@ def create_pdf_with_text(text, output_pdf):
             y = PAGE_HEIGHT - TOP_MARGIN
 
     c.save()
-
-input_pdf_path = r"C:\Users\Luke-\Downloads\NHS_2024_Info (1).pdf"
-output_pdf_path = r"Generated_PDFs\test.pdf"
-extract_text = extract_text_from_pdf(input_pdf_path).strip()
-create_pdf_with_text(extract_text, output_pdf_path)
