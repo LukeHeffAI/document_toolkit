@@ -3,7 +3,7 @@ from pdf_reader import extract_text_from_pdf
 
 def main():
 
-    tool = "key_points"
+    tool = "edit_json"
     # Options:
     # "summarise"
     # "key_points"
@@ -13,7 +13,7 @@ def main():
 
     processor_tool = tool_selector(tool)
 
-    input_type = "pdf"
+    input_type = "text"
     # Options:
     # "text"
     # "pdf"
@@ -21,7 +21,10 @@ def main():
     pdf_path = r"insert\pdf\path\to\test.pdf"
 
     if input_type == "text":
-        text = input("Enter the text to be processed:\n")
+        if tool != "edit_json":
+            text = input("Enter the text to be processed:\n")
+        else:
+            text = input("Enter how to edit the JSON file:\n")
         result = processor_tool.response(text)
 
     elif input_type == "pdf":
