@@ -54,7 +54,7 @@ class LaTeXFormatter(OpenAITextProcessor):
         return self._create_response(system_message, user_message)
     
 class JSONEditor(OpenAITextProcessor):
-    def response(self, text, json_path=input("Enter the JSON file path: ")):
+    def response(self, text, json_path=input):
         with open(json_path, "r") as file:
             json_content = file.read()
         system_message = "You are an expert at digital communications."
