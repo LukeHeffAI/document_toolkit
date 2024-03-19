@@ -1,4 +1,4 @@
-# Welcome to my Document Toolkit!
+# Welcome to my Document Toolkit
 
 ## Prerequisites
 
