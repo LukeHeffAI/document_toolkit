@@ -6,9 +6,11 @@ from dotenv import load_dotenv
 load_dotenv()
 openai.api_key = os.getenv("OPENAI_API_KEY")
 
+max_tokens = 500
+
 # Base class for handling different types of OpenAI text operations
 class OpenAITextProcessor:
-    def __init__(self, model="gpt-4-0125-preview", max_tokens=300):
+    def __init__(self, model="gpt-4-0125-preview", max_tokens=max_tokens):
         self.model = model
         self.max_tokens = max_tokens
     
@@ -51,6 +53,15 @@ class LaTeXFormatter(OpenAITextProcessor):
         user_message = f"Format the following text (which has been extracted from a PDF) into an A4 LaTeX document. Do not alter the content:\n\n{text}"
         return self._create_response(system_message, user_message)
     
+class JSONEditor(OpenAITextProcessor):
+    def response(self, text):
+        json_path = input("Enter the JSON file path: ")
+        with open(json_path, "r") as file:
+            json_content = file.read()
+        system_message = "You are an expert at digital communications."
+        user_message = f"Alter the following JSON to match the following description:\n\nDescription:\n{text}\n\nJSON:{json_content}"
+        return self._create_response(system_message, user_message)
+    
 def tool_selector(tool):
     if tool == "summarise":
         return TextSummariser()
@@ -60,5 +71,7 @@ def tool_selector(tool):
         return LaTeXFormatter()
     elif tool == "query":
         return TextQuery()
+    elif tool == "edit_json":
+        return JSONEditor()
     else:
         raise ValueError("Invalid tool selected")
