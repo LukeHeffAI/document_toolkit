@@ -1,6 +1,4 @@
-# Welcome to the Workflow Enhancement Repository
-
-This repository is designed to streamline your workflow by providing tools for text processing and PDF manipulation. It is beginner-friendly, so don't worry if you're not familiar with programming!
+# Welcome to my Document Toolkit!
 
 ## Prerequisites
 
@@ -14,8 +12,8 @@ Before you begin, make sure you have the following installed:
 1. **Clone the Repository**: First, clone this repository to your local machine using Git. If you're unfamiliar with Git, check out this [guide](https://git-scm.com/book/en/v2/Getting-Started-Git-Basics).
 
     ```bash
-    git clone <repository-link>
-    cd <repository-name>
+    git clone https://github.com/LukeHeffAI/document_toolkit.git
+    cd document_toolkit
     ```
 
 2. **Install Dependencies**: Install the necessary Python packages using pip:
