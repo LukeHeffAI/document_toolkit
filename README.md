@@ -39,7 +39,7 @@ Before you begin, make sure you have the following installed:
     - `query`
     - `edit_json`
 
-2. **Choose Input Type**: Set the `input_type` to either `text` for direct text input or `pdf` for PDF file input.
+2. **Choose Input Type**: Set the `input_type` to either `text` for direct text input or `pdf` for PDF file input. _Input limit is set to 128k tokens (approx. 100,000 words)._
 
 3. **Provide Input**:
     - If you chose `text`, you will be prompted to enter the text when you run the script.
