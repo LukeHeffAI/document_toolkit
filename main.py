@@ -3,17 +3,16 @@ from pdf_reader import extract_text_from_pdf
 
 def main():
 
-    tool = "key_points"
+    tool = "summarise"
     # Options:
     # "summarise"
     # "key_points"
     # "latex"
     # "query"
-    # "edit_json"
 
     processor_tool = tool_selector(tool)
 
-    input_type = "pdf"
+    input_type = "text"
     # Options:
     # "text"
     # "pdf"

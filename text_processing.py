@@ -6,7 +6,7 @@ from dotenv import load_dotenv
 load_dotenv()
 openai.api_key = os.getenv("OPENAI_API_KEY")
 
-max_tokens = 500
+max_tokens = 4096
 
 # Base class for handling different types of OpenAI text operations
 class OpenAITextProcessor:
@@ -21,7 +21,7 @@ class OpenAITextProcessor:
                 {"role": "system", "content": system_content},
                 {"role": "user", "content": user_content}
             ],
-            temperature=1,
+            temperature=0.1,
             max_tokens=self.max_tokens,
             top_p=1,
             frequency_penalty=0,
@@ -53,14 +53,17 @@ class LaTeXFormatter(OpenAITextProcessor):
         user_message = f"Format the following text (which has been extracted from a PDF) into an A4 LaTeX document. Do not alter the content:\n\n{text}"
         return self._create_response(system_message, user_message)
     
-class JSONEditor(OpenAITextProcessor):
-    def response(self, text):
-        json_path = input("Enter the JSON file path: ")
-        with open(json_path, "r") as file:
-            json_content = file.read()
-        system_message = "You are an expert at digital communications."
-        user_message = f"Alter the following JSON to match the following description:\n\nDescription:\n{text}\n\nJSON:{json_content}"
-        return self._create_response(system_message, user_message)
+# class JSONEditor(OpenAITextProcessor):
+#     def response(self, text, json_path):
+#         with open(json_path, "r") as file:
+#             json_content = file.read()
+#         system_message = "You are an expert at digital communications."
+#         user_message = f"Alter the following JSON to match the following description:\n\nDescription:\n{text}\n\nJSON:{json_content}"
+#         response = self._create_response(system_message, user_message)
+#         json_output_path = json_path.split(".")[0] + "_new.json"
+#         with open(json_output_path, "w") as file:
+#             file.write(response)
+#         return response
     
 def tool_selector(tool):
     if tool == "summarise":
@@ -71,7 +74,5 @@ def tool_selector(tool):
         return LaTeXFormatter()
     elif tool == "query":
         return TextQuery()
-    elif tool == "edit_json":
-        return JSONEditor()
     else:
         raise ValueError("Invalid tool selected")
