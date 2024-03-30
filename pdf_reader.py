@@ -22,6 +22,7 @@ LINE_SPACING = 14
 CHAR_WIDTH_ESTIMATE = 6
 
 def extract_text_from_pdf(pdf_source, is_url=False):
+    if pdf_source.split("/")[0] == ["http", "https"] or pdf_source.split('.')[-1] == 'pdf': is_url = True
     if is_url:
         response = requests.get(pdf_source)
         file = BytesIO(response.content)
