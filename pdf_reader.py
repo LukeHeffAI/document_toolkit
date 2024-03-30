@@ -22,7 +22,7 @@ LINE_SPACING = 14
 CHAR_WIDTH_ESTIMATE = 6
 
 def extract_text_from_pdf(pdf_source, is_url=False):
-    if pdf_source.split("/")[0] == ["http", "https"]: is_url = True
+    if pdf_source.split("/")[0] == "http:" or pdf_source.split("/")[0] == "https:": is_url = True
     if is_url:
         response = requests.get(pdf_source)
         file = BytesIO(response.content)
@@ -68,3 +68,6 @@ def create_pdf_with_text(text, output_pdf):
             y = PAGE_HEIGHT - TOP_MARGIN
 
     c.save()
+
+# print(pdf_source.split("/")[0])
+print(extract_text_from_pdf("https://arxiv.org/pdf/2402.19463.pdf"))
