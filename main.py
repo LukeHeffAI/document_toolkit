@@ -30,7 +30,11 @@ def main():
     elif input_type == "pdf":
         print("Extracting text from PDF.")
         text = extract_text_from_pdf(pdf_path)
-        result = processor_tool.response(text)
+        if tool != "query":
+            result = processor_tool.response(text)
+        else:
+            question = input("Input your query: ")
+            result = processor_tool.response(text, question)
         output_filename = f"output/{tool}_" + pdf_path.split("\\")[-1].split(".")[0] + ".txt"
         with open(output_filename, "w") as file:
             file.write(result)
