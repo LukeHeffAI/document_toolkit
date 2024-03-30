@@ -1,4 +1,6 @@
 import PyPDF2
+import requests
+from io import BytesIO
 from reportlab.lib.pagesizes import A4
 from reportlab.pdfgen import canvas
 from reportlab.pdfbase import pdfmetrics
@@ -19,12 +21,22 @@ FONT_SIZE = 12
 LINE_SPACING = 14
 CHAR_WIDTH_ESTIMATE = 6
 
-def extract_text_from_pdf(pdf_path):
-    with open(pdf_path, 'rb') as file:
-        reader = PyPDF2.PdfFileReader(file)
-        text = ''
-        for page_num in range(reader.numPages):
-            text += reader.getPage(page_num).extractText() + '\n'
+def extract_text_from_pdf(pdf_source, is_url=False):
+    if pdf_source.split("/")[0] == ["http", "https"] or pdf_source.split('.')[-1] == 'pdf': is_url = True
+    if is_url:
+        response = requests.get(pdf_source)
+        file = BytesIO(response.content)
+    else:
+        file = open(pdf_source, 'rb')
+        
+    reader = PyPDF2.PdfFileReader(file)
+    text = ''
+    for page_num in range(reader.numPages):
+        text += reader.getPage(page_num).extractText() + '\n'
+    
+    if not is_url:
+        file.close()
+    
     return text
 
 def create_pdf_with_text(text, output_pdf):
