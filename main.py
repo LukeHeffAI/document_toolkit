@@ -21,7 +21,11 @@ def main():
 
     if input_type == "text":
         text = input("Enter the text to be processed:\n")
-        result = processor_tool.response(text)
+        if tool != "query":
+            result = processor_tool.response(text)
+        else:
+            question = input("Input your query: ")
+            result = processor_tool.response(text, question)
 
     elif input_type == "pdf":
         print("Extracting text from PDF.")
